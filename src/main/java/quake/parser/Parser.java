@@ -81,14 +81,10 @@ public class Parser {
 					/*
 					 * Regex verificou que inicia um game
 					 */
-					count++;
-					if ( game != null && !games.contains( game ) ) {// Pega o
-																	// game que
-																	// nao
-																	// aparece
-																	// no log
-																	// como
-																	// terminado
+					count++;                                        
+                                        // Pega o game que nao aparece no log como
+                                        // terminado                         
+					if ( game != null && !games.contains( game ) ) {
 						game.setTotalKills( totalKills );
 					  	game.setKillsForPlayers( killsForPlayers );
 						game.setMeansOfDeath( meansOfDeath );
@@ -152,7 +148,7 @@ public class Parser {
 		}
 
 		/*
-		 * Se fosse utilizar JSON
+		 * Para utilização de JSON
 		 * 
 		 * Gson gson = new GsonBuilder().setPrettyPrinting().create(); String
 		 * gamesString = gson.toJson( games ); System.out.println( gamesString
@@ -164,12 +160,11 @@ public class Parser {
 	private static void createLogParser( List<Jogo> games ) throws IOException {
 		BufferedWriter writer = null;
 		try {
-			// Cria arquivo de log do parse
-                        
+			// Cria arquivo de log do analisador
                         
                         String s = "incio jogo";
 			String path = new SimpleDateFormat( "yyyyMMdd_HHmmss" ).format( Calendar.getInstance().getTime() );
-			File logParser = new File( "parse_" + path + ".txt" );
+			File logParser = new File( "analisador_" + path + ".txt" );
 			writer = new BufferedWriter( new FileWriter( logParser ) );
 			for ( Jogo game : games ) {
 				StringBuilder builderPlayers = new StringBuilder();
@@ -198,7 +193,7 @@ public class Parser {
 		try {
 			// Cria arquivo de relatorio
 			String path = new SimpleDateFormat( "yyyyMMdd_HHmmss" ).format( Calendar.getInstance().getTime() );
-			File logParser = new File( "report_" + path + ".txt" );
+			File logParser = new File( "gamesrelatorio_" + path + ".txt" );
 			writer = new BufferedWriter( new FileWriter( logParser ) );
 			Map<String, Integer> players = new HashMap<String, Integer>();
 			writer.write( "Relatório dos Games: \n" );
@@ -250,7 +245,7 @@ public class Parser {
 		try {
 			// Cria arquivo de relatorio das mortes
 			String path = new SimpleDateFormat( "yyyyMMdd_HHmmss" ).format( Calendar.getInstance().getTime() );
-			File logParser = new File( "meansDeath_" + path + ".txt" );
+			File logParser = new File( "relatoriomortes_" + path + ".txt" );
 			writer = new BufferedWriter( new FileWriter( logParser ) );
 			writer.write( "Relatório de Mortes: \n" );
 			for ( Jogo game : games ) {
